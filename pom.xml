@@ -80,6 +80,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>device-managment-images</finalName>
     </build>
 
 </project>
