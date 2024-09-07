@@ -23,9 +23,9 @@ public class DeviceRepositoryTest {
     @Test
     public void DeviceRepository_Save_ReturnSavedDevice() {
 
-        Device pokemon = Device.builder().name("SmartPhone").brand("Appel").build();
+        Device device = Device.builder().name("SmartPhone").brand("Appel").build();
 
-        Device savedDevice = deviceRepository.save(pokemon);
+        Device savedDevice = deviceRepository.save(device);
 
         Assertions.assertThat(savedDevice).isNotNull();
         Assertions.assertThat(savedDevice.getId()).isGreaterThan(0);
@@ -108,12 +108,12 @@ public class DeviceRepositoryTest {
         deviceSave.setBrand("Tv");
         deviceSave.setName("LG");
 
-        Device updatedPokemon = deviceRepository.save(deviceSave);
+        Device updatedDevice = deviceRepository.save(deviceSave);
 
-        Assertions.assertThat(updatedPokemon.getName()).isNotNull();
-        Assertions.assertThat(updatedPokemon.getBrand()).isNotNull();
-        Assertions.assertThat(updatedPokemon.getBrand()).isEqualTo("Tv");
-        Assertions.assertThat(updatedPokemon.getName()).isEqualTo("LG");
+        Assertions.assertThat(updatedDevice.getName()).isNotNull();
+        Assertions.assertThat(updatedDevice.getBrand()).isNotNull();
+        Assertions.assertThat(updatedDevice.getBrand()).isEqualTo("Tv");
+        Assertions.assertThat(updatedDevice.getName()).isEqualTo("LG");
     }
 
     @Test

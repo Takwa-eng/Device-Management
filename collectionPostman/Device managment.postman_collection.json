@@ -1,0 +1,147 @@
+{
+  "info": {
+    "_postman_id": "c63b38eb-ef07-4568-bcc1-9733b81aa37d",
+    "name": "Device Management",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38198293"
+  },
+  "item": [
+    {
+      "name": "Add Device",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Phone\",\n    \"brand\": \"Apple\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/api/devices",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "api",
+            "devices"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Device by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/api/devices/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "api",
+            "devices",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Devices (Optionally Filter by Brand)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/api/devices?brand=Apple",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "api",
+            "devices"
+          ],
+          "query": [
+            {
+              "key": "brand",
+              "value": "Apple"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Device by ID",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"TV\",\n    \"brand\": \"LG\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:9090/api/devices/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "api",
+            "devices",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Device by ID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/api/devices/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "9090",
+          "path": [
+            "api",
+            "devices",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

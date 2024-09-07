@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,68 +20,63 @@ public class DeviceServiceImpl implements DeviceService {
         this.deviceRepository = deviceRepository;
     }
 
-
     @Override
     public DeviceDto createDevice(DeviceDto deviceDto) {
-
-       // DeviceDto device = DeviceDto.build(1, deviceDto.getName(), deviceDto.getBrand(), LocalDateTime.MAX);
-       // return mapToDto(deviceRepository.save(device));
-
         Device device = new Device();
         device.setName(deviceDto.getName());
         device.setBrand(deviceDto.getBrand());
+        device.setCreationDateTime(LocalDateTime.now());
 
-        Device newDevice = deviceRepository.save(device);
-
-        DeviceDto deviceResponse = new DeviceDto();
-        deviceResponse.setId(newDevice.getId());
-        deviceResponse.setName(newDevice.getName());
-        deviceResponse.setBrand(newDevice.getBrand());
-        return deviceResponse;
+        Device savedDevice = deviceRepository.save(device);
+        return mapToDto(savedDevice);
     }
 
     @Override
-    public DeviceDto getDeviceById(int id)  {
-        Device device = deviceRepository.findById(id).orElseThrow(() -> new DeviceNotFoundException("Device not found"));
+    public DeviceDto getDeviceById(int id) {
+        Device device = deviceRepository.findById(id)
+                .orElseThrow(() -> new DeviceNotFoundException("Device with ID " + id + " not found"));
         return mapToDto(device);
     }
 
     @Override
     public List<DeviceDto> getDevices() {
-        List<Device> listOfDevice = deviceRepository.findAll();
-        return  listOfDevice.stream().map(p -> mapToDto(p)).collect(Collectors.toList());
-
+        return deviceRepository.findAll().stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public DeviceDto updateDevice(DeviceDto devicedto,int id) {
+    public DeviceDto updateDevice(DeviceDto deviceDto, int id) {
+        Device existingDevice = deviceRepository.findById(id)
+                .orElseThrow(() -> new DeviceNotFoundException("Device with ID " + id + " not found"));
 
-       Device device = deviceRepository.findById(id).orElseThrow(() -> new DeviceNotFoundException("Device could not be updated"));
-        device.setName(devicedto.getName());
+        if (deviceDto.getName() != null) {
+            existingDevice.setName(deviceDto.getName());
+        }
+        if (deviceDto.getBrand() != null) {
+            existingDevice.setBrand(deviceDto.getBrand());
+        }
 
-        device.setBrand(devicedto.getBrand());
-        //device.setCreationDateTime(device.get().getCreationDateTime());
-       Device deviceToUpdate = deviceRepository.save(device);
+        // Creation date should not be updated
+        existingDevice.setCreationDateTime(existingDevice.getCreationDateTime());
 
-        return mapToDto(deviceToUpdate) ;
-
+        Device updatedDevice = deviceRepository.save(existingDevice);
+        return mapToDto(updatedDevice);
     }
-
 
     @Override
     public void deleteDevice(int id) {
-        Device pokemon = deviceRepository.findById(id).orElseThrow(() -> new DeviceNotFoundException("Device could not be delete"));
+        deviceRepository.findById(id)
+                .orElseThrow(() -> new DeviceNotFoundException("Device could not be delete"));
         deviceRepository.deleteById(id);
-
     }
 
     @Override
     public List<DeviceDto> findByBrand(String brand) {
-         List<Device> listOfDevice = deviceRepository.findByBrand(brand);
-        return  listOfDevice.stream().map(p -> mapToDto(p)).collect(Collectors.toList());
-
+        return deviceRepository.findByBrand(brand).stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
     }
-
 
     /*
      * Note to reviewer:
@@ -92,12 +86,12 @@ public class DeviceServiceImpl implements DeviceService {
      * I opted for manual mapping in this case, as the entity is straightforward
      * and the mapping logic is minimal.
      */
-    private DeviceDto mapToDto (Device device) {
-        DeviceDto deviceDto = new DeviceDto();
-        deviceDto.setId(device.getId());
-        deviceDto.setName(device.getName());
-        deviceDto.setBrand(device.getBrand());
-        return deviceDto;
+    private DeviceDto mapToDto(Device device) {
+        return DeviceDto.builder()
+                .id(device.getId())
+                .name(device.getName())
+                .brand(device.getBrand())
+                .creationDateTime(device.getCreationDateTime())
+                .build();
     }
-
 }

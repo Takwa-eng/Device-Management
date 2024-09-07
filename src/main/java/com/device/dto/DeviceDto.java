@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Data
 @AllArgsConstructor(staticName = "build")
 @NoArgsConstructor
@@ -14,7 +16,8 @@ public class DeviceDto {
 
     private int id;
     @NotNull(message = "name shouldn't be null")
-     String name;
+    private String name;
     @NotNull(message = "brand shouldn't be null")
-     String brand;
+    private String brand;
+    private LocalDateTime creationDateTime;
 }

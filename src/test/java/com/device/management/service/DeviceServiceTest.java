@@ -3,30 +3,22 @@ package com.device.management.service;
 import com.device.dao.DeviceRepository;
 import com.device.dto.DeviceDto;
 import com.device.entity.Device;
-import com.device.exception.DeviceNotFoundException;
 import com.device.service.impl.DeviceServiceImpl;
-import com.fasterxml.jackson.databind.annotation.NoClass;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.mockito.ArgumentMatchers.isNull;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -100,9 +92,8 @@ public class DeviceServiceTest {
 
     }
 
-
     @Test
-    public void PokemonService_GetAllPokemon_ReturnsResponseDto() {
+    public void DeviceService_GetAllDevice_ReturnsResponseDto() {
 
         Device device = Device.builder()
                 .id(1)
