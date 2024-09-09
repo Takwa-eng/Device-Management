@@ -120,14 +120,14 @@ This will run all unit tests and provide a report on the test results.
 
 Here are the available REST API endpoints:
 
-| HTTP Method | Endpoint                | Description                     | Request Body |
-|-------------|-------------------------|---------------------------------|--------------|
-| POST        | /api/device/add        | Add a new device                | JSON         |
-| GET         | /api/device/{id}       | Get a device by ID              | N/A          |
-| GET         | /api/device/fetchAll   | Get a list of all devices       | N/A          |
-| DELETE      | `/api/device/delete/{id}`| Delete a device by ID           | N/A          |
-| PUT         | `/api/device/update/{id}`| Update a device                 | JSON         |
-| GET         | /api/device/getByBrand | Get devices by brand            | Query Param  |
+| HTTP Method | Endpoint            | Description                     | Request Body |
+|-------------|---------------------|---------------------------------|--------------|
+| POST        | /api/devices        | Add a new device                | JSON         |
+| GET         | /api/devices/{id}   | Get a device by ID              | N/A          |
+| GET         | /api/devices        | Get a list of all devices       | N/A          |
+| DELETE      | `/api/devices/{id}` | Delete a device by ID           | N/A          |
+| PUT         | `/api/devices/{id}` | Update a device                 | JSON         |
+| GET         | /api/devices        | Get devices by brand            | Query Param  |
 
 
 ## Testing the API with Postman
