@@ -10,7 +10,7 @@
 - [Unit Testing](#unit-testing)
 - [API Endpoints](#api-endpoints)
 - [Testing the API with Postman](#testing-the-api-with-postman)
-- [License](#license)
+
 
 ---
 
@@ -55,20 +55,20 @@ Before running this project, ensure you have the following installed:
 1. *Clone the repository:*
 
 
-git clone https://github.com/Takwa-eng/Device-Management.git
+`git clone https://github.com/Takwa-eng/Device-Management.git`
 
 2. *Navigate to the project directory:*
 
 
-cd your-repo-name
+`cd your-repo-name`
 
 3. *Build the project using Maven:*
 
-mvn clean install
+`mvn clean install`
 
 4. *Run the application:*
 
-mvn spring-boot:run
+`mvn spring-boot:run`
 
 The application will start on http://localhost:9090
 
@@ -92,11 +92,11 @@ You can run this project using Docker by following these steps:
 
 1. *pull the Docker image:*
 
-docker pull takwa854/device-managment-images.
+`docker pull takwa854/device-managment-images`
 
 2. *Run the Docker container:*
 
-docker run -p 9090:9090 takwa854/device-managment-images
+`docker run -p 9090:9090 takwa854/device-managment-images`
 
 The application will now be running in a Docker container, accessible at http://localhost:9090
 
@@ -110,7 +110,7 @@ This project includes unit tests to validate the functionality of the DeviceServ
 
 To run the unit tests, execute the following Maven command:
 
-mvn test
+`mvn test`
 
 This will run all unit tests and provide a report on the test results.
 
@@ -125,8 +125,8 @@ Here are the available REST API endpoints:
 | POST        | /api/devices        | Add a new device                | JSON         |
 | GET         | /api/devices/{id}   | Get a device by ID              | N/A          |
 | GET         | /api/devices        | Get a list of all devices       | N/A          |
-| DELETE      | `/api/devices/{id}` | Delete a device by ID           | N/A          |
-| PUT         | `/api/devices/{id}` | Update a device                 | JSON         |
+| DELETE      | /api/devices/{id}   | Delete a device by ID           | N/A          |
+| PUT         | /api/devices/{id}   | Update a device                 | JSON         |
 | GET         | /api/devices        | Get devices by brand            | Query Param  |
 
 
@@ -137,8 +137,6 @@ Use Postman or any other API client to interact with the API. Below are the avai
 **collection postman**
 > [a relative link](Device-Management/collectionPostman)
 `Device-Management/collectionPostman`
----
 
-## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
