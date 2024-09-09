@@ -20,6 +20,12 @@ public class DeviceServiceImpl implements DeviceService {
         this.deviceRepository = deviceRepository;
     }
 
+
+    /**
+     * Creates a new device.
+     * @param deviceDto : device
+     * @return  DeviceDto the created device
+     */
     @Override
     public DeviceDto createDevice(DeviceDto deviceDto) {
         Device device = new Device();
@@ -31,6 +37,12 @@ public class DeviceServiceImpl implements DeviceService {
         return mapToDto(savedDevice);
     }
 
+    /**
+     * search device by id
+     * @param id id of device
+     * @return DeviceDto the found device
+     * @throws DeviceNotFoundException if no device found
+     */
     @Override
     public DeviceDto getDeviceById(int id) {
         Device device = deviceRepository.findById(id)
@@ -38,6 +50,10 @@ public class DeviceServiceImpl implements DeviceService {
         return mapToDto(device);
     }
 
+    /**
+     * get all devices
+     * @return List of devices
+     */
     @Override
     public List<DeviceDto> getDevices() {
         return deviceRepository.findAll().stream()
@@ -45,6 +61,13 @@ public class DeviceServiceImpl implements DeviceService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     *  Updates a device by its ID.
+     * @param deviceDto
+     * @param id
+     * @return the updated device
+     * @throws DeviceNotFoundException if no device found with the given id
+     */
     @Override
     public DeviceDto updateDevice(DeviceDto deviceDto, int id) {
         Device existingDevice = deviceRepository.findById(id)
@@ -64,6 +87,11 @@ public class DeviceServiceImpl implements DeviceService {
         return mapToDto(updatedDevice);
     }
 
+    /**
+     * Deletes a device by
+     * @param id the ID of the device to delete
+     * @throws DeviceNotFoundException if the device with the given ID is not found
+     */
     @Override
     public void deleteDevice(int id) {
         deviceRepository.findById(id)
@@ -71,6 +99,11 @@ public class DeviceServiceImpl implements DeviceService {
         deviceRepository.deleteById(id);
     }
 
+    /**
+     * Finds devices by brand
+     * @param brand
+     * @return a list of devices with the specified brand
+     */
     @Override
     public List<DeviceDto> findByBrand(String brand) {
         return deviceRepository.findByBrand(brand).stream()

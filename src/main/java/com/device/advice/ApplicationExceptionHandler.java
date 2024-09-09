@@ -23,7 +23,7 @@ public class ApplicationExceptionHandler {
         return errorMap;
     }
 
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(DeviceNotFoundException.class)
     public Map<String, String> handleBusinessException(DeviceNotFoundException exception) {
         Map<String, String> errorMap = new HashMap<>();
